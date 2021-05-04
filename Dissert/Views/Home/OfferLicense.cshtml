@@ -1,0 +1,117 @@
+﻿@using Dissert.Domain.Entities
+@{
+    ViewData["Title"] = "Подбор лицензии";
+}
+@section Scripts
+{
+    <script>
+        function valueChanged() {
+            if ($('#opt1').is(":checked"))
+                for (let i = 2; i <= 16; i++)
+                    $("#opt" + i).prop('checked', true);
+            else
+                for (let i = 2; i <= 16; i++)
+                    $("#opt" + i).prop('checked', false);
+        }
+    </script>
+}
+
+<section class="inner-page">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-2  center"></div>
+            <div class="col-lg-7  center">
+                <form asp-action="OfferLicense" asp-controller="Home">
+                    <p><h4>Отметьте аттрибуты которые относятся к вашему объекту авторского права (ОАП)</h4><b>(все неотмеченные аттрибуты считаются запрещёными)</b></p>
+                    <p>
+                        @Html.CheckBox("opt1", new
+                        {
+                            @class = "btn-check",
+                            @autocomplete = "off",
+                       @onchange = "valueChanged()"
+                        })
+                        @Html.Label("opt1", "Разрешено ВСЁ", new { @class = "btn btn-outline-success" })
+                    </p>
+                    <p>
+                        @Html.CheckBox("opt2", new { @class = "btn-check", @autocomplete = "off" })
+                        @Html.Label("opt2", "Разрешено использование в неккоммерческих целях", new { @class = "btn btn-outline-success" })
+                    </p>
+                    <p>
+                        @Html.CheckBox("opt3", new { @class = "btn-check", @autocomplete = "off" })
+                        @Html.Label("opt3", "Разрешено использование в коммерческих целях", new { @class = "btn btn-outline-success" })
+                    </p>
+
+                    <p>
+                        @Html.CheckBox("opt4", new { @class = "btn-check", @autocomplete = "off" })
+                        @Html.Label("opt4", "Разрешено изменять исходный ОАП", new { @class = "btn btn-outline-success" })
+                    </p>
+
+                    <p>
+                        @Html.CheckBox("opt5", new { @class = "btn-check", @autocomplete = "off" })
+                        @Html.Label("opt5", "Разрешено включать в сторонние коллекции объектов АП", new { @class = "btn btn-outline-success" })
+                    </p>
+
+                    <p>
+                        @Html.CheckBox("opt6", new { @class = "btn-check", @autocomplete = "off" })
+                        @Html.Label("opt6", "Разрешено изменять лицензию исходного ОАП", new { @class = "btn btn-outline-success" })
+                    </p>
+
+                    <p>
+                        @Html.CheckBox("opt7", new { @class = "btn-check", @autocomplete = "off" })
+                        @Html.Label("opt7", "Разрешено использование в закрытом программном обеспечении(ПО)", new { @class = "btn btn-outline-success" })
+                    </p>
+
+                    <p>
+                        @Html.CheckBox("opt8", new { @class = "btn-check", @autocomplete = "off" })
+                        @Html.Label("opt8", "Разрешено использовать изменную версию ОАП", new { @class = "btn btn-outline-success" })
+                    </p>
+
+                    <p>
+                        @Html.CheckBox("opt9", new { @class = "btn-check", @autocomplete = "off" })
+                        @Html.Label("opt9", "Разрешено копировать исходный ОАП", new { @class = "btn btn-outline-success" })
+                    </p>
+
+                    <p>
+                        @Html.CheckBox("opt10", new { @class = "btn-check", @autocomplete = "off" })
+                        @Html.Label("opt10", "Разрешено объединение с другими объектами АП", new { @class = "btn btn-outline-success" })
+                    </p>
+
+                    <p>
+                        @Html.CheckBox("opt11", new { @class = "btn-check", @autocomplete = "off" })
+                        @Html.Label("opt11", "Разрешено распространение без исходного кода", new { @class = "btn btn-outline-success" })
+                    </p>
+                    <p>
+                        @Html.CheckBox("opt12", new { @class = "btn-check", @autocomplete = "off" })
+                        @Html.Label("opt12", "Разрешено переводить на другие языки", new { @class = "btn btn-outline-success" })
+                    </p>
+                    <p>
+                        @Html.CheckBox("opt13", new { @class = "btn-check", @autocomplete = "off" })
+                        @Html.Label("opt13", "Разрешено распространять измененную версию ОАП", new { @class = "btn btn-outline-success" })
+                    </p>
+                    <p>
+                        @Html.CheckBox("opt14", new { @class = "btn-check", @autocomplete = "off" })
+                        @Html.Label("opt14", "Разрешено распространять оригинальную версию", new { @class = "btn btn-outline-success" })
+                    </p>
+                    <p>
+                        @Html.CheckBox("opt15", new { @class = "btn-check", @autocomplete = "off" })
+                        @Html.Label("opt15", "Разрешено распространение без отказа от ответственности", new { @class = "btn btn-outline-success" })
+                    </p>
+                    <p>
+                        @Html.CheckBox("opt16", new { @class = "btn-check", @autocomplete = "off" })
+                        @Html.Label("opt16", "Разрешено изменять в целях улучшения", new { @class = "btn btn-outline-success" })
+                    </p>
+                    <input type="submit" class="btn btn-primary" value="Подобрать" />
+                </form>
+                @{if (@ViewBag.NameWeightList == null) return;
+                   foreach (var item in @ViewBag.NameWeightList)
+                   {
+                      <b>Сумма по @item.Name  =  @item.Weight %</b>
+                   }
+                       // <h5>Вам наиболее подходит лицензия - <b>GPL</b> <br> Совпадения с данной лицензией <b>@ViewBag.NameWeightList.Weight%</b></h5>
+                   }
+            </div>
+        </div>
+    </div>
+</section>
+

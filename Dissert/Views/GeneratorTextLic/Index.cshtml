@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Генератор текста лицензии";
+}
+
+
+
+    <section class="inner-page">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-2  center"></div>
+                <div class="col-lg-7  center">
+                    <p>
+                        Сгенерированный текст лицензионного соглашения генирируется только для одной категории — <b>коммерческого программного обеспечения.</b>
+                        <br />Данный договор <b>должен</b> быть принят пользователем перед процессом установки или во время первого запуска, с ясной формулировкой для пользователя "Я принимаю условия лицензионного соглашения". Соглашение должно быть явное, в виде кнопки или чекбокса.
+                    </p>
+                    <form asp-action="Index" asp-controller="GeneratorTextLic">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Название программного обеспечения</span>
+                            <input type="text" class="form-control" placeholder="Моя программа" aria-label="Username" aria-describedby="basic-addon1" name="program_name">
+                        </div>
+
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Адрес сайта</span>
+                            <input type="text" class="form-control" placeholder="www.mysite.ru" aria-label="Username" aria-describedby="basic-addon1" name="web_site">
+                        </div>
+
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Название компании или имя разработчика</span>
+                            <input type="text" class="form-control" placeholder="My Comnany Name" aria-label="Username" aria-describedby="basic-addon1" name="developer_name">
+                        </div> 
+                        
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Электронная почта</span>
+                            <input type="text" class="form-control" placeholder="mycompany@mydomain.ru" aria-label="Username" aria-describedby="basic-addon1" name="email">
+                        </div>                        
+                     
+                        <br>
+                        <input type="submit" value="Сгенерировать PDF" class="btn btn-primary" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>

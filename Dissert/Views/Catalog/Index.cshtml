@@ -1,0 +1,85 @@
+﻿@using Dissert.Domain.Entities
+@{
+    ViewData["Title"] = "Справочник лицензий";
+}
+
+
+
+<section class="inner-page">
+
+
+    <div class="container">
+
+        <form asp-action="Index" asp-controller="Catalog">
+            <div class="row">
+                <div class="col-lg-2  center"></div>
+                <div class="col-lg-7  center">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">@@</span>
+                        <input autocomplete="off" name="license_name" id="license_name" type="text" class="form-control" placeholder="Название лицензии" aria-label="name" aria-describedby="basic-addon1" value="@ViewBag.license_name">
+                        <input type="submit" class="btn btn-primary" value="Поиск" />
+        </form>
+
+    </div> <span id="result"></span>
+
+    <div class="row">
+
+        <div class="col-lg-6  center">
+
+
+            <h4>Некоммерческие лицензии</h4>
+            <ul style="list-style-type:square">
+
+                @foreach (License lics_noncom in @ViewBag.licenses)
+                {
+                    @if (lics_noncom.maincat_id == 1)
+                    {
+                        <li><a asp-area="" asp-controller="Catalog" asp-action="OneLicense" asp-route-id="@lics_noncom.Id">@lics_noncom.license_name</a></li>
+                    }
+                }
+
+            </ul>
+        </div>
+        <div class="col-lg-6  center">
+            <h4>Коммерческие лицензии</h4>
+
+            @foreach (License lics_com in @ViewBag.licenses)
+            {
+                @if (lics_com.maincat_id == 2)
+                {
+                    <li><a asp-area="" asp-controller="Catalog" asp-action="OneLicense" asp-route-id="@lics_com.Id">@lics_com.license_name</a></li>
+                }
+            }
+
+      
+            <h4>Другое</h4>
+
+            @foreach (License lics_other in @ViewBag.licenses)
+            {
+                @if (lics_other.maincat_id == 3)
+                {
+                    <li><a asp-area="" asp-controller="Catalog" asp-action="OneLicense" asp-route-id="@lics_other.Id">@lics_other.license_name</a></li>
+                }
+            }
+
+        </div>
+
+    </div>
+
+    </div>
+    </div>
+
+
+
+    </div>
+</section>
+
+@section Scripts
+{
+    <script>
+        license_name.oninput = function () {
+            
+            $(this).closest('form').submit();
+        };
+    </script>
+}

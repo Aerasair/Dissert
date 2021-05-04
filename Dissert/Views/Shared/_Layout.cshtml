@@ -1,52 +1,98 @@
-﻿<!DOCTYPE html>
+﻿<title>@ViewData["Title"] </title>
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Dissert</title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href='@Url.Content("~/lib/bootstrap/dist/css/bootstrap.min.css")'  asp-append-version="true"/>
+        <link rel="stylesheet" href='@Url.Content("~/css/icofont/icofont.min.css")'  asp-append-version="true"/>
+        <link rel="stylesheet" href='@Url.Content("~/css/boxicons/css/boxicons.min.css")'  asp-append-version="true"/>
+        <link rel="stylesheet" href='@Url.Content("~/css/animate.css/animate.min.css")'  asp-append-version="true"/>
+        <link rel="stylesheet" href='@Url.Content("~/css/venobox/venobox.css")'  asp-append-version="true"/>
+        <link rel="stylesheet" href='@Url.Content("~/css/remixicon/remixicon.css")'  asp-append-version="true"/>
+        @*<link rel="stylesheet" href="~/css/site.css" />*@
+        <link rel="stylesheet" href='@Url.Content("~/css/style.css")'  asp-append-version="true"/>
+        <link rel="stylesheet" href='@Url.Content("~/css/boxicons/css/boxicons.min.css")'  asp-append-version="true"/>
+
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+        <!-- Favicons -->
+        @* <link href="~/images/favicon.png" rel="icon">*@
+        <link href="~/images/apple-touch-icon.png" rel="apple-touch-icon">
+
+
+
     </environment>
     <environment exclude="Development">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+
+        @*<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />*@
+        <link rel="stylesheet" href='@Url.Content("~/css/site.min.css")' asp-append-version="true" />
+        <link rel="stylesheet" href='@Url.Content("~/lib/bootstrap/dist/css/bootstrap.min.css")' asp-append-version="true" />
+        <link rel="stylesheet" href='@Url.Content("~/css/icofont/icofont.min.css")' asp-append-version="true" />
+        <link rel="stylesheet" href='@Url.Content("~/css/boxicons/css/boxicons.min.css")' asp-append-version="true" />
+        <link rel="stylesheet" href='@Url.Content("~/css/animate.css/animate.min.css")' asp-append-version="true" />
+        <link rel="stylesheet" href='@Url.Content("~/css/venobox/venobox.css")' asp-append-version="true" />
+        <link rel="stylesheet" href='@Url.Content("~/css/remixicon/remixicon.css")' asp-append-version="true" />
+        @*<link rel="stylesheet" href="~/css/site.css" />*@
+        <link rel="stylesheet" href='@Url.Content("~/css/style.css")' asp-append-version="true" />
+        <link rel="stylesheet" href='@Url.Content("~/css/boxicons/css/boxicons.min.css")' asp-append-version="true" />
+
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+        <!-- Favicons -->
+        @* <link href="~/images/favicon.png" rel="icon">*@
+        <link href="~/images/apple-touch-icon.png" rel="apple-touch-icon">
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Dissert</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
     <partial name="_CookieConsentPartial" />
+    <!-- ======= Header ======= -->
+    <header id="header">
+        <!-- .nav-menu -->
+        <nav class="site-header sticky-top py-1">
+            <div class="container d-flex flex-column flex-md-row justify-content-between">
+                <a class="py-2" href="#">
+                    <img src="~/images/logoicon.svg" class="img-fluid" alt="Responsive image" id = "logo" />
+                </a>
+                <a asp-area="" asp-controller="Home" asp-action="Index">Главная страница</a>
+                <a asp-area="" asp-controller="Catalog" asp-action="Index">Справочник лицензий</a>
+                <a asp-area="" asp-controller="Home" asp-action="OfferLicense">Подбор лицензии для вас</a>
+                <a asp-area="" asp-controller="GeneratorTextLic" asp-action="Index">Генератор текста</a>
+                <a asp-area="" asp-controller="Home" asp-action="Legal">Правовая информация</a>
+                <a asp-area="" asp-controller="Home" asp-action="Resources">Ресурсы</a>
+            </div>
+        </nav>
+  </div>
 
-    <div class="container body-content">
+    </header><!-- End Header -->
+    <main id="main">
+
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2021 - Dissert</p>
-        </footer>
-    </div>
+    </main>
+    <!-- ======= Footer ======= -->
+    <footer id="footer" style=" margin-bottom: -10; }">
+
+        <div class="container d-md-flex py-4 ">
+
+            <div class="me-md-auto text-center text-md-start ">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>Азаров Андрей</span></strong>. Проект создан в рамках диссертационной работы. ДВГУПС 2021.
+                </div>
+                <div class="credits">
+                    <!-- All the links in the footer should remain intact. -->
+                    <!-- You can delete the links only if you purchased the pro version. -->
+                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/ -->
+                    Дизайн <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                </div>
+            </div>     
+        </div>
+    </footer>
+    <!-- End Footer -->
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

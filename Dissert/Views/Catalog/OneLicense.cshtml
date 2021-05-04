@@ -1,0 +1,70 @@
+﻿@using System.Web
+
+@{
+    ViewData["Title"] =  @ViewBag.license.license_name;
+}
+
+
+<section class="inner-page">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-2  center"></div>
+            <div class="col-lg-7  center">
+
+                <h3>
+                    @*@ViewBag.id
+            @ViewBag.license.license_name
+            @ViewBag.license.Id*@
+                    @ViewBag.license.license_name
+                    -
+                    @ViewBag.license.lic_full_name
+                    -
+                    @ViewBag.license.lic_full_name_rus
+                </h3>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><i class="fas fa-laptop-code"></i>Software</li>
+                    <li class="list-inline-item"><i class="fab fa-osi"></i>Open source</li>
+                    <li class="list-inline-item"><i class="fas fa-copyright"></i>Copyleft</li>
+                </ul>
+                <hr>
+                <b>@ViewBag.license.license_name</b> — @ViewBag.license.lic_description
+                <br><br>
+
+                <ul>
+                    <b>Разрешения</b>
+                    @{
+                        string a = @ViewBag.license.lic_pluses;
+
+                        var list_pluses = a.Split(',').ToList();
+
+                        foreach (var item in list_pluses)
+                        {
+                            <li>@item</li>
+                        }
+                    }
+                </ul>
+
+
+                <ul>
+                    <b>Ограничения</b>
+                    <li>@ViewBag.license.lic_minuses</li>
+                    <li>Открытый исходный код</li>
+                </ul>
+
+
+
+                <b>Программы распространяющиеся по GPL:</b> @ViewBag.license.lic_sameprograms
+
+                <p><b>Как применить к своей работе</b></p>
+                Создайте файл с названием license.txt, вставьте в него текст лицензии на двух языках, оригинале и языке вашего объекта авторского права или языке целевой аудитории. Данный файл необходимо распространять вместе с ваей работой.
+
+                <br><br>
+                <a target="_blank" href="@ViewBag.license.lic_url_agreement_ru"><button type="button" class="btn btn-outline-primary">Читать текст лицензии на русском</button></a>
+                <a target="_blank" href="@ViewBag.license.lic_url_agreement_en"><button type="button" class="btn btn-outline-primary">Читать текст лицензии на английсском <b>(оригинал)</b></button></a>
+
+
+            </div>
+        </div>
+    </div>
+</section>
