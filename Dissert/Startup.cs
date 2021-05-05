@@ -22,9 +22,13 @@ namespace Dissert
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public static string webRootPath;
+        public static string projectRootPath;
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            webRootPath = env.WebRootPath;
+            projectRootPath = AppContext.BaseDirectory;
         }
 
         public IConfiguration Configuration { get; }

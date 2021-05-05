@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.IO;
-
+using System;
+//using IronPdf;
 using SelectPdf;
+
+
+
 
 namespace Dissert.Controllers
 {
@@ -25,11 +25,15 @@ namespace Dissert.Controllers
             return new FileStreamResult(steam, "application/pdf");
         }
 
-        private FileStream GetHtml(string program_name, string  developer_name,string web_site,string email)
+        private FileStream GetHtml(string program_name, string developer_name, string web_site, string email)
         {
-            string html = System.IO.File.ReadAllText(Directory.GetCurrentDirectory() + @"\Files\Templates\license.html");
+            var htmlPath = Startup.webRootPath + @"\files\template.html";
+            var newLicensePath = Startup.webRootPath + @"\files\license.html";
+
+
+            string html = System.IO.File.ReadAllText(htmlPath);
             html = html.Replace("{program_name}", program_name);
-            html = html.Replace("{developer_name}",  developer_name);
+            html = html.Replace("{developer_name}", developer_name);
             html = html.Replace("{web_site}", web_site);
             html = html.Replace("{date}", DateTime.Now.ToString("dd-MM-yyyy"));
             html = html.Replace("{email}", email);
@@ -37,7 +41,7 @@ namespace Dissert.Controllers
 
             // read parameters from the webpage
             string htmlString = html;
-    
+
 
             string pdf_page_size = "A4";
             PdfPageSize pageSize = (PdfPageSize)Enum.Parse(typeof(PdfPageSize),
@@ -75,14 +79,32 @@ namespace Dissert.Controllers
             PdfDocument doc = converter.ConvertHtmlString(htmlString, "localhost");
 
             // save pdf document
-            doc.Save(Directory.GetCurrentDirectory() + @"\Files\Generations\license.pdf");
+            doc.Save(newLicensePath);
 
             // close pdf document
             doc.Close();
-            var stream = new FileStream(Directory.GetCurrentDirectory() + @"\Files\Generations\license.pdf", FileMode.Open);
+            var stream = new FileStream(newLicensePath, FileMode.Open);
 
             return stream;
-        }      
+        }
+
+
+        //private FileStream GetHtmlIron(string program_name, string developer_name, string web_site, string email)
+        //{
+        //    var render = new IronPdf.HtmlToPdf();
+        //    //var doc = render.RenderHtmlAsPdf(System.IO.File.ReadAllText(Directory.GetCurrentDirectory() + @"\Files\Templates\license.html"));
+        //    //doc.SaveAs(Directory.GetCurrentDirectory() + @"\Files\Generations\license.pdf");
+        //    //var stream = new FileStream(Directory.GetCurrentDirectory() + @"\Files\Generations\license.pdf", FileMode.Open);
+        //    var htmlPath = Startup.webRootPath + @"\files\template.html";// ("~/files/template.html");
+        //    var newLicensePath = Startup.webRootPath + @"\files\license.html";
+        //    var htmlstring = System.IO.File.ReadAllText(htmlPath);
+        //    var doc = render.RenderHtmlAsPdf(htmlstring);
+        //    doc.SaveAs(newLicensePath);
+        //    var stream = new FileStream(newLicensePath, FileMode.Open);
+        //    return stream;
+        //}
 
     }
+
+
 }
