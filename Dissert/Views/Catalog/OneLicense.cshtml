@@ -36,7 +36,7 @@
                     @{
                         string a = @ViewBag.license.lic_pluses;
 
-                        var list_pluses = a.Split(',').ToList();
+                        var list_pluses = a.Split(';').ToList();
 
                         foreach (var item in list_pluses)
                         {
@@ -48,8 +48,16 @@
 
                 <ul>
                     <b>Ограничения</b>
-                    <li>@ViewBag.license.lic_minuses</li>
-                    <li>Открытый исходный код</li>
+                    @{
+                        string b = @ViewBag.license.lic_minuses;
+
+                        var lic_minuses = b.Split(';').ToList();
+
+                        foreach (var item in lic_minuses)
+                        {
+                            <li>@item</li>
+                        }
+                    }
                 </ul>
 
 

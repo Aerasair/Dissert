@@ -63,14 +63,7 @@ namespace Dissert.Controllers
             return View();
         }
 
-        ///// <summary>
-        ///// Справочник всех лицензий
-        ///// </summary>
-        ///// <returns></returns>
-        //public IActionResult Catalog()
-        //{
-        //    return View();
-        //}
+
 
         /// <summary>
         /// Генератор текста лицензии 
@@ -86,7 +79,6 @@ namespace Dissert.Controllers
             return View();
         }
 
-
         [HttpGet]
         public IActionResult OfferLicense()
         {
@@ -99,16 +91,24 @@ namespace Dissert.Controllers
         [HttpPost]
         public IActionResult OfferLicense([FromForm] Models.UserOptions request) //[FromBody] List<Models.UserOptions> fields
         {
-            ViewBag.NameWeightList = CalculateSum(request);
-            //нам нужден лист List<string name_table,double percent)
+
+            var requestList = UserOptionWrapper.GetUserOptionWrapper(request);
+
+            var a = new license_mit(db).Calculate(requestList);
+            var b = new license_gpl(db).Calculate(requestList);
+
+            List<NameWeight> nameWeights = new List<NameWeight>();
+            nameWeights.Add(a);
+            nameWeights.Add(b);
+
+            ViewBag.NameWeightList = nameWeights.OrderByDescending(r => r.Weight) ;
+           
 
             return View(request); //На вход в View подавать инфу нужно только в специальных случаях,
                                   //например когда нужно заполнить уже форму данными с формы прошлого экрана 
                                   //ЧТО в ДАННОМ случае и происходит
                                   //для всего остального есть ViewBag                                  
         }
-
-    
 
         public IActionResult Privacy()
         {
@@ -125,45 +125,5 @@ namespace Dissert.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-        private List<NameWeight> CalculateSum(Models.UserOptions request)
-        {
-            List<NameWeight> nameWeightList = new List<NameWeight>();
-          
-
-            //и наверно тут будет вторая функция подающая все таблицы в виде листа
-            List<license_gpl> items1 = (from _gpl in this.db.license_gpl
-                                       select _gpl).ToList();
-
-
-         
-            List<license_mit> items2 = (from _mit in this.db.license_mit
-                                              select _mit).ToList();
-
-
-            var requestList = UserOptionWrapper.GetUserOptionWrapper(request);
-            double sum = 0.0;
-
-            NameWeight nameWeitItem = new NameWeight();
-            
-            
-
-            for (int i = 0; i <= 15; i++)
-            {//Второй цикл сверху по всем таблицам и лист сумм с сортировкой с Take(3)
-                if (items2[i].attUsing == null) continue;
-
-                if (items2[i].attUsing == requestList[i])
-                    sum += items2[i].weight;
-                else
-                    sum -= items2[i].weight;
-            }
-            nameWeitItem.Name = items2.GetType().GetGenericArguments()[0].Name.ToString();
-            nameWeitItem.Weight = Math.Round(sum, 2) * 100;
-            nameWeightList.Add(nameWeitItem);
-
-            return nameWeightList;
-        }
-
-
     }
 }

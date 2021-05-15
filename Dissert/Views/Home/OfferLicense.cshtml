@@ -104,12 +104,15 @@
                     <input type="submit" class="btn btn-primary" value="Подобрать" />
                 </form>
                 @{if (@ViewBag.NameWeightList == null) return;
-                   foreach (var item in @ViewBag.NameWeightList)
-                   {
-                      <b>Сумма по @item.Name  =  @item.Weight %</b>
-                   }
-                       // <h5>Вам наиболее подходит лицензия - <b>GPL</b> <br> Совпадения с данной лицензией <b>@ViewBag.NameWeightList.Weight%</b></h5>
-                   }
+
+                    foreach (var item in @ViewBag.NameWeightList)
+                    {
+                        <h5>
+                            Вам наиболее подходит лицензия - <b>@item.Name</b> 
+                        <br> Совпадения с данной лицензией <b>@item.Weight%</b>
+                        </h5>
+                    }
+                }
             </div>
         </div>
     </div>

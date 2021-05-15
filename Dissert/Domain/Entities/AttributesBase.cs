@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dissert.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,5 +16,7 @@ namespace Dissert.Domain.Entities
         public string name { get; set; }
         public double weight { get; set; }
         public bool? attUsing { get; set; }
+
+        
     }
 }
