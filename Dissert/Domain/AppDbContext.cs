@@ -12,8 +12,21 @@ namespace Dissert.Domain
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<License> license { get; set; }
+
+        public DbSet<license_apache> license_apache { get; set; }
+        public DbSet<license_bsd3> license_bsd3 { get; set; }
+        public DbSet<license_cc_by> license_cc_by { get; set; }
+        public DbSet<license_cc_by_nc> license_cc_by_nc { get; set; }
+        public DbSet<license_cc_by_nc_nd> license_cc_by_nc_nd { get; set; }
+        public DbSet<license_cc_by_nc_sa> license_cc_by_nc_sa { get; set; }
+        public DbSet<license_cc_by_nd> license_cc_by_nd { get; set; }
+        public DbSet<license_cc_by_sa> license_cc_by_sa { get; set; }
         public DbSet<license_gpl> license_gpl { get; set; }
         public DbSet<license_mit> license_mit { get; set; }
+        
+        
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

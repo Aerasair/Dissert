@@ -104,12 +104,15 @@
                     <input type="submit" class="btn btn-primary" value="Подобрать" />
                 </form>
                 @{if (@ViewBag.NameWeightList == null) return;
-
+                    <h5>
+                        Вам наиболее подходят следующие лицензии:
+                        @*<br> Совпадения с данной лицензией <b>@item.Weight%</b>*@
+                    </h5>
                     foreach (var item in @ViewBag.NameWeightList)
                     {
                         <h5>
-                            Вам наиболее подходит лицензия - <b>@item.Name</b> 
-                        <br> Совпадения с данной лицензией <b>@item.Weight%</b>
+                            <b>@item.Name</b>
+                            @*<br> Совпадения с данной лицензией <b>@item.Weight%</b>*@
                         </h5>
                     }
                 }

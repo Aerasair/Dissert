@@ -44,8 +44,8 @@ namespace Dissert.Domain.Entities
                     sum -= items2[i].weight;
             }
 
-            nameWeitItem.Name = "MIT";
-            nameWeitItem.Weight = Math.Round(sum, 2) * 100;
+            nameWeitItem.Name = "Лицензия MIT";
+            nameWeitItem.Weight = Math.Round(sum, 3) * 100;
 
             return nameWeitItem;
         }

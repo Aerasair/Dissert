@@ -94,14 +94,35 @@ namespace Dissert.Controllers
 
             var requestList = UserOptionWrapper.GetUserOptionWrapper(request);
 
-            var a = new license_mit(db).Calculate(requestList);
-            var b = new license_gpl(db).Calculate(requestList);
+            var l1 = new license_mit(db).Calculate(requestList);
+            var l2 = new license_gpl(db).Calculate(requestList);
+
+            var l3 = new license_apache(db).Calculate(requestList);
+            var l4 = new license_bsd3(db).Calculate(requestList);
+            var l5 = new license_cc_by(db).Calculate(requestList);
+            var l6 = new license_cc_by_nc(db).Calculate(requestList);
+            var l7 = new license_cc_by_nc_nd(db).Calculate(requestList);
+            var l8 = new license_cc_by_nc_sa(db).Calculate(requestList);
+            var l9 = new license_cc_by_nd(db).Calculate(requestList);
+            var l10 = new license_cc_by_sa(db).Calculate(requestList);
+
+
 
             List<NameWeight> nameWeights = new List<NameWeight>();
-            nameWeights.Add(a);
-            nameWeights.Add(b);
+            nameWeights.Add(l1);
+            nameWeights.Add(l2);
+            nameWeights.Add(l3);
+            nameWeights.Add(l4);
+            nameWeights.Add(l5);
+            nameWeights.Add(l6);
+            nameWeights.Add(l7);
+            nameWeights.Add(l8);
+            nameWeights.Add(l9);
+            nameWeights.Add(l10);
+      
+      
 
-            ViewBag.NameWeightList = nameWeights.OrderByDescending(r => r.Weight) ;
+            ViewBag.NameWeightList = nameWeights.OrderByDescending(r => r.Weight).Take(3) ;
            
 
             return View(request); //На вход в View подавать инфу нужно только в специальных случаях,
