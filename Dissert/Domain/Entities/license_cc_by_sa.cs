@@ -45,7 +45,8 @@ namespace Dissert.Domain.Entities
             }
 
             nameWeitItem.Name = "Лицензия Creative Common BY SA";
-            nameWeitItem.Weight = Math.Round(sum, 3) * 100;
+            nameWeitItem.Weight = sum * 100;
+            nameWeitItem.urlGuid = "be79a5b1-e1e0-4c09-81a4-1380d8d3d81c";
 
             return nameWeitItem;
         }

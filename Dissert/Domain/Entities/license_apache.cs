@@ -45,7 +45,8 @@ namespace Dissert.Domain.Entities
             }
 
             nameWeitItem.Name = "Лицензия Apache";
-            nameWeitItem.Weight = Math.Round(sum, 3) * 100;
+           nameWeitItem.Weight = sum * 100;
+            nameWeitItem.urlGuid = "38c05056-c9bd-4eaa-add4-46d7bcea2337";
 
             return nameWeitItem;
         }

@@ -96,7 +96,6 @@ namespace Dissert.Controllers
 
             var l1 = new license_mit(db).Calculate(requestList);
             var l2 = new license_gpl(db).Calculate(requestList);
-
             var l3 = new license_apache(db).Calculate(requestList);
             var l4 = new license_bsd3(db).Calculate(requestList);
             var l5 = new license_cc_by(db).Calculate(requestList);

@@ -44,7 +44,8 @@ namespace Dissert.Domain.Entities
             }
 
             nameWeitItem.Name = "GPL";
-            nameWeitItem.Weight = Math.Round(sum, 3) * 100;
+            nameWeitItem.Weight =nameWeitItem.Weight = sum * 100;
+            nameWeitItem.urlGuid = "981c3c9e-cbdd-4594-a537-1101c23adb82";
 
             return nameWeitItem;
         }

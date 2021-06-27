@@ -44,8 +44,9 @@ namespace Dissert.Domain.Entities
                     sum -= items2[i].weight;
             }
 
-            nameWeitItem.Name = "Лицензия Apache";
-            nameWeitItem.Weight = Math.Round(sum, 3) * 100;
+            nameWeitItem.Name = "Лицензия BSD3";
+           nameWeitItem.Weight = sum * 100;
+            nameWeitItem.urlGuid = "7dd08ddd-e1d6-418e-8a25-6be72fbdd6d6";
 
             return nameWeitItem;
         }
