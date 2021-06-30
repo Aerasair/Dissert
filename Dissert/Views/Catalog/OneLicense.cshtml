@@ -22,11 +22,6 @@
                     -
                     @ViewBag.license.lic_full_name_rus
                 </h3>
-                <ul class="list-inline">
-                    <li class="list-inline-item"><i class="fas fa-laptop-code"></i>Software</li>
-                    <li class="list-inline-item"><i class="fab fa-osi"></i>Open source</li>
-                    <li class="list-inline-item"><i class="fas fa-copyright"></i>Copyleft</li>
-                </ul>
                 <hr>
                 <b>@ViewBag.license.license_name</b> — @ViewBag.license.lic_description
                 <br><br>
@@ -62,8 +57,8 @@
 
 
 
-                <b>Программы распространяющиеся по GPL:</b> @ViewBag.license.lic_sameprograms
-
+                <b>Программы распространяющиеся по  @ViewBag.license.license_name:</b> @ViewBag.license.lic_sameprograms
+                <br /><br />
                 <p><b>Как применить к своей работе</b></p>
                 Создайте файл с названием license.txt, вставьте в него текст лицензии на двух языках, оригинале и языке вашего объекта авторского права или языке целевой аудитории. Данный файл необходимо распространять вместе с ваей работой.
 
